@@ -2,4 +2,20 @@
     <string name="app_name">HelloWorld</string>
     <string name="label_hello_world">Hello World</string>
     <string name="action_hello">Hello user</string>
+    <string name="login">Логин</string>
+    <string name="registration">Регистрация</string>
+    <string name="go_to_registration">Зарегистрироваться</string>
+    <string name="go_to_login">Уже есть аккаунт?</string>
+    <string name="welcome_screen_title">Пожалуй, лучший фитнес трекер в ДВФУ</string>
+    <string name="welcome_screen_under_title">Созданный студентами</string>
+    <string name="name">Имя или никнейм</string>
+    <string name="password">Пароль</string>
+    <string name="password_repeat">Повторите пароль</string>
+    <string name="sex">Пол</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+    <string name="other">Другое</string>
+    <string name="alert">Нажимая на кнопку, вы соглашаетесь с <a href="https://www.google.com/">политикой конфиденциальности</a> и обработкой персональных данных, а также принимаете <a href="https://www.google.com/">пользовательское соглашение</a></string>
+    <string name="enter">Вход</string>
+    <string name="enterButton">Войти</string>
 </resources>
