@@ -2,11 +2,7 @@ package com.example.helloworld
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
 import android.text.method.LinkMovementMethod
-import android.text.style.URLSpan
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.helloworld.databinding.ActivityRegistrationBinding
 
@@ -27,6 +23,15 @@ class RegistrationActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.buttonRegistration.setOnClickListener {
+            val intent = Intent(this, MainActivityActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.alert.setMovementMethod(LinkMovementMethod.getInstance())
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
     }
 }

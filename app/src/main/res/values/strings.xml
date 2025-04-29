@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">HelloWorld</string>
-    <string name="label_hello_world">Hello World</string>
-    <string name="action_hello">Hello user</string>
+    <string name="app_name">fitness tracker</string>
     <string name="login">Логин</string>
     <string name="registration">Регистрация</string>
     <string name="go_to_registration">Зарегистрироваться</string>
@@ -18,4 +16,8 @@
     <string name="alert">Нажимая на кнопку, вы соглашаетесь с <a href="https://www.google.com/">политикой конфиденциальности</a> и обработкой персональных данных, а также принимаете <a href="https://www.google.com/">пользовательское соглашение</a></string>
     <string name="enter">Вход</string>
     <string name="enterButton">Войти</string>
+    <string name="activity">Активность</string>
+    <string name="profile">Профиль</string>
+    <string name="mine">Моя</string>
+    <string name="users">Пользователей</string>
 </resources>
