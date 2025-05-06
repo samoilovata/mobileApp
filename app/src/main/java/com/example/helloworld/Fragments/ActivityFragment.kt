@@ -1,4 +1,4 @@
-package com.example.helloworld
+package com.example.helloworld.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import com.example.helloworld.R
 import com.example.helloworld.databinding.FragmentActivityBinding
 
 
@@ -28,34 +29,23 @@ class ActivityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val activityMineFragment = ActivityMineFragment();
-        val activityUsersFragment = ActivityUsersFragment();
-
         binding.navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigationActivity -> {
-                    val tag = childFragmentManager.findFragmentByTag("activity_users_fr")
-                    childFragmentManager.commit() {
-                        if (tag != null) hide(activityUsersFragment)
-                        show(activityMineFragment)
+                R.id.navigationMine -> {
+                    val usersFragment = childFragmentManager.findFragmentByTag("activity_users_fr")
+                    val mineFragment = childFragmentManager.findFragmentByTag("activity_mine_fr")
+                    childFragmentManager.commit {
+                        if (usersFragment != null) hide(usersFragment)
+                        if (mineFragment != null) show(mineFragment)
                     }
                     true
                 }
-                R.id.navigationProfile -> {
-                    val tag = childFragmentManager.findFragmentByTag("activity_users_fr")
-                    if (tag == null) {
-                        childFragmentManager.beginTransaction().apply {
-                            add(
-                                binding.fragmentContainer.id,
-                                activityUsersFragment,
-                                "activity_users_fr"
-                            )
-                            commit()
-                        }
-                    }
+                R.id.navigationUsers -> {
+                    val usersFragment = childFragmentManager.findFragmentByTag("activity_users_fr")
+                    val mineFragment = childFragmentManager.findFragmentByTag("activity_mine_fr")
                     childFragmentManager.commit {
-                        hide(activityMineFragment)
-                        show(activityUsersFragment)
+                        if (mineFragment != null) hide(mineFragment)
+                        if (usersFragment != null) show(usersFragment)
                     }
                     true
                 }
@@ -65,11 +55,22 @@ class ActivityFragment : Fragment() {
 
         if (savedInstanceState == null) {
             childFragmentManager.beginTransaction().apply {
+                val activityUsersFragment = ActivityUsersFragment()
+
                 add(
                     binding.fragmentContainer.id,
-                    activityMineFragment,
+                    activityUsersFragment,
+                    "activity_users_fr"
+                )
+
+                hide(activityUsersFragment)
+
+                add(
+                    binding.fragmentContainer.id,
+                    ActivityMineFragment(),
                     "activity_mine_fr"
                 )
+
                 commit()
             }
         }

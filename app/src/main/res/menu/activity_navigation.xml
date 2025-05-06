@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigationActivity"
+        android:id="@+id/navigationMine"
         android:title="@string/mine" />
 
     <item
-        android:id="@+id/navigationProfile"
+        android:id="@+id/navigationUsers"
         android:title="@string/users" />
 </menu>

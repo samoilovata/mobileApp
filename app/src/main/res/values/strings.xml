@@ -20,4 +20,7 @@
     <string name="profile">Профиль</string>
     <string name="mine">Моя</string>
     <string name="users">Пользователей</string>
+    <string name="start">Старт</string>
+    <string name="comment">Комментарий</string>
+    <string name="finish">Финиш</string>
 </resources>

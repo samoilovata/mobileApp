@@ -1,4 +1,4 @@
-package com.example.helloworld
+package com.example.helloworld.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
