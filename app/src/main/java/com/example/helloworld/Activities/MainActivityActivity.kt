@@ -26,10 +26,12 @@ class MainActivityActivity : AppCompatActivity() {
                     val profileFragment = supportFragmentManager.findFragmentByTag("profile_fr")
                     val activityFragment = supportFragmentManager.findFragmentByTag("activity_fr")
                     val detailsFragment = supportFragmentManager.findFragmentByTag("details_fr")
+                    val profileEditPasswordFragment = supportFragmentManager.findFragmentByTag("edit_password_fr")
                     supportFragmentManager.commit {
                         if (detailsFragment != null) remove(detailsFragment)
                         if (profileFragment != null) hide(profileFragment)
                         if (activityFragment != null) show(activityFragment)
+                        if (profileEditPasswordFragment != null) remove(profileEditPasswordFragment)
                     }
                     true
                 }
@@ -37,10 +39,12 @@ class MainActivityActivity : AppCompatActivity() {
                     val profileFragment = supportFragmentManager.findFragmentByTag("profile_fr")
                     val activityFragment = supportFragmentManager.findFragmentByTag("activity_fr")
                     val detailsFragment = supportFragmentManager.findFragmentByTag("details_fr")
+                    val profileEditPasswordFragment = supportFragmentManager.findFragmentByTag("edit_password_fr")
                     supportFragmentManager.commit {
                         if (detailsFragment != null) remove(detailsFragment)
                         if (activityFragment != null) hide(activityFragment)
                         if (profileFragment != null) show(profileFragment)
+                        if (profileEditPasswordFragment != null) remove(profileEditPasswordFragment)
                     }
                     true
                 }

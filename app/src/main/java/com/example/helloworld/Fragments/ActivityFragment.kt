@@ -1,21 +1,19 @@
 package com.example.helloworld.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import com.example.helloworld.Activities.NewActivity
 import com.example.helloworld.R
 import com.example.helloworld.databinding.FragmentActivityBinding
 
 
 class ActivityFragment : Fragment() {
     private lateinit var binding: FragmentActivityBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +26,11 @@ class ActivityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonNewActivity.setOnClickListener {
+            val intent = Intent(requireActivity(), NewActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {

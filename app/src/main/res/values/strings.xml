@@ -23,4 +23,13 @@
     <string name="start">Старт</string>
     <string name="comment">Комментарий</string>
     <string name="finish">Финиш</string>
+    <string name="save">Сохранить</string>
+    <string name="nickname">Имя или никнейм</string>
+    <string name="changePassword">Изменить пароль</string>
+    <string name="logout">Выйти</string>
+    <string name="oldPassword">Старый пароль</string>
+    <string name="newPassword">Новый пароль</string>
+    <string name="repeatPassword">Повторите пароль</string>
+    <string name="apply">Принять</string>
+    <string name="begin">Начать</string>
 </resources>

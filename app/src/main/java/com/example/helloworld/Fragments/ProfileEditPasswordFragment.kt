@@ -1,51 +1,40 @@
 package com.example.helloworld.Fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.helloworld.Activities.WelcomeScreenActivity
-import com.example.helloworld.R
-import com.example.helloworld.databinding.FragmentProfileBinding
+import com.example.helloworld.databinding.FragmentProfileEditPasswordBinding
 
 
-class ProfileFragment : Fragment() {
-    private lateinit var binding: FragmentProfileBinding
+class ProfileEditPasswordFragment : Fragment() {
+    private lateinit var binding: FragmentProfileEditPasswordBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentProfileBinding.inflate(layoutInflater)
+        binding = FragmentProfileEditPasswordBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.changePassword.setOnClickListener {
+        binding.buttonBack.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction().apply {
                 val profileFragment = requireActivity().supportFragmentManager.findFragmentByTag("profile_fr")
+                val profileEditPasswordFragment = requireActivity().supportFragmentManager.findFragmentByTag("edit_password_fr")
 
+                if (profileEditPasswordFragment != null)
+                    remove(profileEditPasswordFragment)
                 if (profileFragment != null)
-                    hide(profileFragment)
-
-                add(
-                    R.id.fragmentContainer,
-                    ProfileEditPasswordFragment(),
-                    "edit_password_fr"
-                )
+                    show(profileFragment)
 
                 commit()
             }
-        }
-
-        binding.buttonLogout.setOnClickListener {
-            val intent = Intent(requireActivity(), WelcomeScreenActivity::class.java)
-            startActivity(intent)
         }
     }
 }

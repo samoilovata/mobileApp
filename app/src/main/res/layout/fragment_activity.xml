@@ -25,4 +25,22 @@
 
     </androidx.fragment.app.FragmentContainerView>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonNewActivity"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:layout_margin="10dp"
+
+        app:cornerRadius="50dp"
+        app:icon="@drawable/play_arrow"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
