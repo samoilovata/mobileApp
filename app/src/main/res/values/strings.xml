@@ -32,4 +32,5 @@
     <string name="repeatPassword">Повторите пароль</string>
     <string name="apply">Принять</string>
     <string name="begin">Начать</string>
+    <string name="time_to_train">Время потренить</string>
 </resources>

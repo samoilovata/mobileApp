@@ -1,20 +1,20 @@
 package com.example.helloworld.Fragments
 
-import ActivityInfo
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.helloworld.App
 import com.example.helloworld.databinding.FragmentDetailsBinding
+import com.example.helloworld.db.Activity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,10 +28,28 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val arg = arguments?.getParcelable<ActivityInfo>("activity_info")
-        fillFragment(arg)
+        val id = arguments?.getInt("id")
+
+        if (id != null) {
+            App.INSTANCE.db.activityDao().getActivityByID(id).observe(viewLifecycleOwner) { activity ->
+                fillFragment(activity)
+            }
+        }
 
         binding.buttonBack.setOnClickListener {
+            parentFragmentManager.beginTransaction().apply {
+                remove(this@DetailsFragment)
+                val activityFragment = requireActivity().supportFragmentManager.findFragmentByTag("activity_fr")
+                if (activityFragment != null) show(activityFragment)
+                commit()
+            }
+        }
+
+        binding.buttonDelete.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                id?.let { it1 -> App.INSTANCE.db.activityDao().delete(it1) }
+            }
+
             parentFragmentManager.beginTransaction().apply {
                 remove(this@DetailsFragment)
                 val activityFragment = requireActivity().supportFragmentManager.findFragmentByTag("activity_fr")
@@ -42,24 +60,15 @@ class DetailsFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    fun fillFragment(activityInfo: ActivityInfo?) {
-        if (activityInfo != null) {
-            binding.activityType.text = activityInfo.activityType
-        }
-        if (activityInfo != null) {
-            if (activityInfo.user != "myProfile") binding.user.text = "@${activityInfo.user}"
-        }
-        if (activityInfo != null) {
-            binding.distance.text = "${activityInfo.distance} м"
-        }
-        if (activityInfo != null) {
-            binding.timePassed.text = activityInfo.timePassed
-        }
-        if (activityInfo != null) {
-            binding.timeStart.text = activityInfo.timeStart
-        }
-        if (activityInfo != null) {
-            binding.timeFinish.text = activityInfo.timeFinish
+    fun fillFragment(activity: Activity?) {
+        if (activity != null) {
+            binding.activityType.text = activity.activityType
+            binding.user.text = "@${activity.user}"
+            binding.distance.text = "${activity.distance} м"
+            binding.timeSpent.text = "${activity.timeSpentHours} ч ${activity.timeSpentMinutes} мин"
+            binding.timePassed.text = "Сейчас"
+            binding.timeStart.text = activity.timeStart
+            binding.timeFinish.text = activity.timeFinish
         }
     }
 }

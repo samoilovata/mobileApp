@@ -1,163 +1,38 @@
 package com.example.helloworld
 
-import ActivityInfo
+import com.example.helloworld.db.Activity
+
 
 class ActivityRepository {
 
-    private val defaultActivityList = listOf(
-        ActivityInfo(
+    private val defaultActivityList1 = mutableListOf(
+        Activity(
             null,
-            null,
+            "",
             "04.05.2025",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ),
-        ActivityInfo(
             0,
-            "jesus",
-            "04.05.2025",
-            1000.0,
-            2,
-            40,
-            "Серфинг",
-            "14 часов назад",
-            "14:49",
-            "16:31",
-            "Воскрес"
-        ),
-        ActivityInfo(
-            null,
-            null,
-            "29.05.2022",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ),
-        ActivityInfo(
-            1,
-            "hsiurg",
-            "29.05.2022",
-            200.0,
             0,
-            60,
-            "Серфинг",
-            "14 часов назад",
-            "14:49",
-            "16:31",
-            "fgbishrgsik"
-        ),
-        ActivityInfo(
-            2,
-            "myProfile",
-            "29.05.2022",
-            200.0,
             0,
-            60,
-            "Серфинг",
-            "14 часов назад",
-            "14:49",
-            "16:31",
-            "fgbishrgsik"
+            "",
+            "",
+            "",
+            null,
         ),
-        ActivityInfo(
+        Activity(
             3,
-            "cbcbcbcbcbcb",
+            "fancy_vibes",
             "29.05.2022",
-            200.0,
+            200,
             0,
             60,
-            "Серфинг",
+            "Велосипед",
             "14 часов назад",
             "14:49",
-            "16:31",
-            "fgbishrgsik"
-        ),
-        ActivityInfo(
-            null,
-            null,
-            "29.05.2022",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ),
-        ActivityInfo(
-            3,
-            "cbcbcbcbcbcb",
-            "29.05.2022",
-            200.0,
-            0,
-            60,
-            "Серфинг",
-            "14 часов назад",
-            "14:49",
-            "16:31",
-            "fgbishrgsik"
-        ),
-        ActivityInfo(
-            4,
-            "fhsiurg",
-            "29.05.2022",
-            200.0,
-            0,
-            60,
-            "Серфинг",
-            "14 часов назад",
-            "14:49",
-            "16:31",
-            "fgbishrgsik"
-        ),
-    )
-
-    private val defaultActivityList1 = listOf(
-        ActivityInfo(
-            null,
-            null,
-            "04.05.2025",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ),
-        ActivityInfo(
-            3,
-            "cbcbcbcbcbcb",
-            "29.05.2022",
-            200.0,
-            0,
-            60,
-            "Серфинг",
-            "14 часов назад",
-            "14:49",
-            "16:31",
-            "fgbishrgsik"
+            "Standing here I realize",
         )
     )
 
-    public fun getActivityMine() : List<ActivityInfo> {
-        return defaultActivityList
-    }
-
-    public fun getActivityUsers() : List<ActivityInfo> {
+    public fun getActivityUsers() : MutableList<Activity> {
         return defaultActivityList1
     }
 }

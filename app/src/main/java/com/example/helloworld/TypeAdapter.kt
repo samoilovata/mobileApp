@@ -50,18 +50,6 @@ class TypeAdapter (
             ((holder as TypeSelectedViewHolder).bind(mutableActivities[position]))
     }
 
-    fun addType(string: String) {
-        mutableActivities.add(string)
-        notifyItemInserted(mutableActivities.size - 1)
-    }
-
-    fun removeType(position: Int) {
-        if (position in mutableActivities.indices) {
-            mutableActivities.removeAt(position)
-            notifyItemRemoved(position)
-        }
-    }
-
     fun updateType(string: String) {
         if (string in mutableActivities) {
             val temp = _selected
@@ -73,10 +61,6 @@ class TypeAdapter (
 
     fun getType(position: Int) : String {
         return mutableActivities[position]
-    }
-
-    fun setType(activityInfos: List<String>) {
-        submitList(activityInfos)
     }
 
     fun setItemClickListener(listener: (Int) -> Unit) {

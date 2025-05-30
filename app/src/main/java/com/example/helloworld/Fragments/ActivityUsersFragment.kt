@@ -36,11 +36,16 @@ class ActivityUsersFragment : Fragment() {
         }
 
         activityAdapter.setItemClickListener {
-            val activityInfo = activityAdapter.getActivity(it)
+            val activity = activityAdapter.getActivity(it)
             val detailsFragment = DetailsFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable("activity_info", activityInfo)
+                    activity.id?.let { it1 -> putInt("id", it1) }
                 }
+                /*
+                Это не будет работать, потому что Activity из ActivityRepository нет
+                в БД, а нет его там, потому что нет реализации регистрации
+                и всей логики с ней связанной, т.к. не было такого задания
+                */
             }
 
             requireActivity().supportFragmentManager.beginTransaction().apply {

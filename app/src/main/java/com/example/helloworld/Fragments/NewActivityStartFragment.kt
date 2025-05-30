@@ -16,6 +16,7 @@ class NewActivityStartFragment : Fragment() {
 
     private val list = listOf("Велосипед", "Бег", "Шаг")
     private val typeAdapter = TypeAdapter(list)
+    private var currentActivityType = list[0]
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,15 +31,22 @@ class NewActivityStartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonStart.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("key", currentActivityType)
+            }
+
             requireActivity().supportFragmentManager.beginTransaction().apply {
                 val newActivityStartFragment = requireActivity().supportFragmentManager.findFragmentByTag("start_fr")
 
                 if (newActivityStartFragment != null)
                     hide(newActivityStartFragment)
 
+                val newActivityRecordingFragment = NewActivityRecordingFragment()
+                newActivityRecordingFragment.arguments = bundle
+
                 add(
                     R.id.fragmentContainer,
-                    NewActivityRecordingFragment(),
+                    newActivityRecordingFragment,
                     "recording_fr"
                 )
 
@@ -53,6 +61,7 @@ class NewActivityStartFragment : Fragment() {
 
         typeAdapter.setItemClickListener {
             val typeInfo = typeAdapter.getType(it)
+            currentActivityType = typeInfo
 
             typeAdapter.updateType(typeInfo)
         }

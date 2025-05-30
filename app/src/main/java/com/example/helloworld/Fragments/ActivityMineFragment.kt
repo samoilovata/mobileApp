@@ -8,15 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.helloworld.ActivityAdapter
 import com.example.helloworld.databinding.FragmentActivityMineBinding
-import com.example.helloworld.ActivityRepository
+import com.example.helloworld.App
 import com.example.helloworld.R
+import com.example.helloworld.db.Activity
 
 
 class ActivityMineFragment : Fragment() {
     private lateinit var binding: FragmentActivityMineBinding
 
-    private val activityRepository = ActivityRepository()
-    private val activityAdapter = ActivityAdapter(activityRepository.getActivityMine())
+    private val activityAdapter by lazy {
+        val temp = mutableListOf<Activity>()
+        ActivityAdapter(temp)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,11 +38,21 @@ class ActivityMineFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
+        App.INSTANCE.db.activityDao().getAllActivity().observe(viewLifecycleOwner) { activityList ->
+            val converted = activityList
+
+            activityAdapter.updateData(converted, binding.textEmpty)
+        }
+
+        if (activityAdapter.itemCount == 0) {
+            binding.textEmpty.visibility = View.VISIBLE
+        } else binding.textEmpty.visibility = View.GONE
+
         activityAdapter.setItemClickListener {
-            val activityInfo = activityAdapter.getActivity(it)
+            val activity = activityAdapter.getActivity(it)
             val detailsFragment = DetailsFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable("activity_info", activityInfo)
+                    activity.id?.let { it1 -> putInt("id", it1) }
                 }
             }
 
